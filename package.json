@@ -1,0 +1,20 @@
+{
+  "name": "parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "server": "nodemon app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cyrillic-to-translit-js": "^3.1.0",
+    "fs": "^0.0.1-security",
+    "got": "^9.6.0",
+    "hpagent": "^0.1.2",
+    "nodemon": "^2.0.13",
+    "request": "^2.88.2"
+  }
+}
