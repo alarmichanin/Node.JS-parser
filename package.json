@@ -1,20 +1,20 @@
 {
-  "name": "parser",
+  "name": "node.js-parser",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "This parser was developed for only one site, in order to get information about the products on the page using only requests to the server.",
+  "main": "appForTranslit.js",
+  "devDependencies": {},
   "scripts": {
-    "start": "node app",
-    "server": "nodemon app"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alarmichanin/Node.JS-parser.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cyrillic-to-translit-js": "^3.1.0",
-    "fs": "^0.0.1-security",
-    "got": "^9.6.0",
-    "hpagent": "^0.1.2",
-    "nodemon": "^2.0.13",
-    "request": "^2.88.2"
-  }
+  "bugs": {
+    "url": "https://github.com/alarmichanin/Node.JS-parser/issues"
+  },
+  "homepage": "https://github.com/alarmichanin/Node.JS-parser#readme"
 }

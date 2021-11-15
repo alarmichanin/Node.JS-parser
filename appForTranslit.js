@@ -1,15 +1,18 @@
 const fs = require('fs')
-const smth = require('./UARUTranslit/ownModules/getInfo')
+const getInfo = require('./UARUTranslit/ownModules/getInfo')
+const writeData = require('./UARUTranslit/ownModules/writeToJson')
 async function start() {
-    let data = await smth.getTranslit()
-    let str = JSON.stringify(data, null, '\t')
-    fs.appendFileSync('./UARUTranslit/translit.json', str, (err) => {
-        if (err)
-            return console.log(err)
-    })
+    // let data = await getInfo.getTranslit()
+    // let str = JSON.stringify(data, null, '\t')
+    // fs.appendFileSync('./UARUTranslit/translit.json', str, (err) => {
+    //     if (err)
+    //         return console.log(err)
+    // })
+    let done = await writeData.writeInfo()
 }
 
 start()
+
 // translitF.ab().then(console.log)
 
 

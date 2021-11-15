@@ -5,6 +5,16 @@ const eachProd = require('./getLinksOfEachProducts')
 const generalLinkUA = 'https://ion.ua/ua/api/apr/catalog/products/'
 const generalLinkRU = 'https://ion.ua/api/apr/catalog/products/'
 
+exports.getLinksOfEachProd = async function getLinksOfEachProduct() {
+    try {
+        let data = await eachProd.finalEach()
+        let ruVar = await mainFunc.getInfo(generalLinkRU, data[0])
+        let uaVar = await mainFunc.getInfo(generalLinkUA, data[1])
+        return Promise.resolve([ruVar, uaVar])
+    } catch (e) {
+    }
+}
+//???
 async function getLinksOfEachProd() {
     try {
         let data = await eachProd.finalEach()
@@ -31,22 +41,6 @@ async function makeStartTranslit(sin) {
     }
     return Promise.resolve(massObj)
 }
-// async function makeTranslit(sin) {
-//     let massObj = await makeStartTranslit(sin)
-//     for (let each in sin[1]) {
-//         let needObj = massObj.find(obj => obj.url === sin[1][each]["cross"]["ua"])
-//         if (needObj) {
-//             let keysArr = Object.keys(needObj.content)
-//             console.log(keysArr)
-//             let i = 0
-//             for (let every in sin[1][each]["product"]['attributes']) {
-//                 needObj["content"][keysArr[i]] = translit({ preset: "uk" }).transform(every, "_")
-//                 i++
-//             }
-//         }
-//     }
-//     return Promise.resolve(massObj)
-// }
 
 exports.getTranslit = async function ab() {
     try {
@@ -54,5 +48,6 @@ exports.getTranslit = async function ab() {
         let jsonObjRUUA = await makeStartTranslit(mass)
         return Promise.resolve(jsonObjRUUA)
     } catch (e) {
+        console.log(e)
     }
 }
