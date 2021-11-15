@@ -5,16 +5,6 @@ const eachProd = require('./getLinksOfEachProducts')
 const generalLinkUA = 'https://ion.ua/ua/api/apr/catalog/products/'
 const generalLinkRU = 'https://ion.ua/api/apr/catalog/products/'
 
-exports.getLinksOfEachProd = async function getLinksOfEachProduct() {
-    try {
-        let data = await eachProd.finalEach()
-        let ruVar = await mainFunc.getInfo(generalLinkRU, data[0])
-        let uaVar = await mainFunc.getInfo(generalLinkUA, data[1])
-        return Promise.resolve([ruVar, uaVar])
-    } catch (e) {
-    }
-}
-//???
 async function getLinksOfEachProd() {
     try {
         let data = await eachProd.finalEach()
@@ -42,7 +32,11 @@ async function makeStartTranslit(sin) {
     return Promise.resolve(massObj)
 }
 
-exports.getTranslit = async function ab() {
+
+module.exports = {
+    getLinksOfEachProd
+}
+module.exports.getTranslit = async function ab() {
     try {
         let mass = await getLinksOfEachProd()
         let jsonObjRUUA = await makeStartTranslit(mass)
