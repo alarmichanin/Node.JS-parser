@@ -6,8 +6,9 @@ async function makeData(arrOfEachProd, language) {
         let atr = []
         let imgs = []
         let arrObjs = []
+        let arrKeyVal = []
         await Promise.all(
-            arrOfEachProd.map(prod =>
+            arrOfEachProd.map((prod, iter) =>
                 new Promise(async (resolve, rej) => {
                     await sleeper.wait(Math.random() * (4000 - 500) + 500)
                     let exObj = {}
@@ -15,9 +16,12 @@ async function makeData(arrOfEachProd, language) {
                     let imgObj = {}
                     let keys = Object.keys(prod['breadcrumbs'])
                     // let key = keys.at(-1)
+                    exObj.iter = iter
                     exObj.url = prod['breadcrumbs'][keys.length - 1]
                     exObj.name = prod['product']['name']
                     exObj.price = prod['product']['prices']['price']
+                    if (prod['product']['sku'])
+                        exObj.sku = prod['product']['sku']
                     imgObj.name = prod['product']['name']
                     imgObj.imgs = []
                     for (let each in prod['product']['attributes']) {
@@ -56,12 +60,14 @@ async function makeData(arrOfEachProd, language) {
                     }
                     imgObj.mainImg = "https://cdn0.it4profit.com/" + prod['product']['image']
                     arrObjs.push(exObj)
+                    if (Object.keys(keyObj).length !== 0)
+                        arrKeyVal.push(keyObj)
                     imgs.push(imgObj)
                     resolve()
                 }
                 )
             ))
-        return Promise.resolve([arrObjs, atr, imgs])
+        return Promise.resolve([arrObjs, arrKeyVal, imgs])
     } catch (e) { console.log(e) }
 }
 
